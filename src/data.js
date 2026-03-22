@@ -8,6 +8,7 @@ import CSU_Logo from "./images/CSU_Logo.jpeg";
 import VJIT_Logo from "./images/VJIT_Logo.png";
 import Drughelp_Logo from "./images/Drughelp_Logo.png";
 import Accenture_Logo from "./images/Accenture_Logo.png";
+import PA_DOC from "./images/PA_DOC.jpg";
 import Ajna_Logo from "./images/Ajna_Logo.jpg";
 import JWT from "./images/svg/JWT.svg";
 import AWS from "./images/svg/AWS.svg";
@@ -119,6 +120,22 @@ export const projectsData = [
 export const experiences = [
   {
     id: "1",
+    role: "Sr. Software Engineer",
+    company: "Pennsylvania Department of Corrections",
+    date: "Aug 2024 – Present",
+    img: PA_DOC,
+    desc: {
+      points: [ 
+        "• Led the modernization of a legacy financial platform, migrating from AngularJS to Angular 17 and refactoring back-end services with Java and Spring Boot, resulting in a 30% improvement in modularity and performance.",
+        "• Oversaw end-to-end delivery workflows by managing JIRA tasks, monitoring production on RedHat OpenShift clusters, and streamlining CI/CD pipelines in GitLab, automating builds, deployments, and peer code reviews."
+      ],
+    },
+    techStack: {
+      logos : [  ],
+    },
+  },
+  {
+    id: "2",
     role: "Software Engineer",
     company: "Drughelp.care ",
     date: "Jul 2022 – May 2023",
@@ -144,7 +161,7 @@ export const experiences = [
   //
   // },
   {
-    id: "3",
+    id: "4",
     role: "Application Development Analyst",
     company: "Accenture",
     date: "Aug 2021 – Dec 2021",
@@ -160,7 +177,7 @@ export const experiences = [
     },
   },
   {
-    id: "4",
+    id: "5",
     role: "Junior Software Engineer",
     company: "Mize, Inc",
     date: "Nov 2018 – Jul 2021",
@@ -177,7 +194,7 @@ export const experiences = [
     },
   },
   {
-    id: "5",
+    id: "6",
     role: "Intern",
     company: "Ajna Networks",
     date: "May 2018 – Oct 2018",

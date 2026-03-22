@@ -3,7 +3,6 @@ import {
   Facebook,
   Instagram,
   Mail,
-  Phone,
   Pinterest,
   LinkedIn,
   GitHub,
@@ -196,9 +195,11 @@ const Footer = () => {
           : null }
           <Right>
             <Title>Contact</Title>
-            <ContactItem>
+            {/* Phone contact (currently hidden) - use this block if you want to show the phone number */}
+            {/* <ContactItem>
               <Phone style={{ marginRight: "20px" }} /> +1 216 467 0834
-            </ContactItem>
+            </ContactItem> */}
+            {/* Email contact - clickable mailto link */}
             <ContactItem>
               <Mail style={{ marginRight: "20px" }} /> <EmailTag href='mailto:venuadimulam01@gmail.com?body=Hello Venu Adimulam,'>venuadimulam01@gmail.com</EmailTag>
             </ContactItem>
