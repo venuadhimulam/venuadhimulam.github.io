@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/static/js/main.dcdafd88.chunk.js",
-    "main.js.map": "/static/js/main.dcdafd88.chunk.js.map",
+    "main.js": "/static/js/main.f65b58a1.chunk.js",
+    "main.js.map": "/static/js/main.f65b58a1.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.309c7efb.js",
     "runtime-main.js.map": "/static/js/runtime-main.309c7efb.js.map",
-    "static/js/2.ac836460.chunk.js": "/static/js/2.ac836460.chunk.js",
-    "static/js/2.ac836460.chunk.js.map": "/static/js/2.ac836460.chunk.js.map",
+    "static/js/2.61894220.chunk.js": "/static/js/2.61894220.chunk.js",
+    "static/js/2.61894220.chunk.js.map": "/static/js/2.61894220.chunk.js.map",
     "index.html": "/index.html",
-    "static/js/2.ac836460.chunk.js.LICENSE.txt": "/static/js/2.ac836460.chunk.js.LICENSE.txt",
+    "static/js/2.61894220.chunk.js.LICENSE.txt": "/static/js/2.61894220.chunk.js.LICENSE.txt",
     "static/media/AWS.e67fd2c1.svg": "/static/media/AWS.e67fd2c1.svg",
     "static/media/AWS_Cloud_Computing.452652bb.png": "/static/media/AWS_Cloud_Computing.452652bb.png",
     "static/media/Accenture_Logo.53de8e7c.png": "/static/media/Accenture_Logo.53de8e7c.png",
@@ -64,7 +64,7 @@
   },
   "entrypoints": [
     "static/js/runtime-main.309c7efb.js",
-    "static/js/2.ac836460.chunk.js",
-    "static/js/main.dcdafd88.chunk.js"
+    "static/js/2.61894220.chunk.js",
+    "static/js/main.f65b58a1.chunk.js"
   ]
 }
