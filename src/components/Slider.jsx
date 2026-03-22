@@ -154,7 +154,7 @@ const Slider = () => {
                   Venu<SpanTag style={{ color: "#add6b2" }}> Adimulam</SpanTag>
                 </Title>
                 <Desc>{item.desc}</Desc>
-                <Button href="https://drive.google.com/file/d/1f0pe4MybhApaMz7afR8LlcOhnHlVGtSc/view?usp=sharing" target="_blank">
+                <Button href="https://drive.google.com/file/d/1f_2iSCZKT4yQZILUpc0BxVnam27-nLLi/view?usp=sharing" target="_blank">
                   View Resume
                 </Button>
               </InfoContainer>
