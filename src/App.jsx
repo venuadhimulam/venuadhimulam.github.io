@@ -120,8 +120,8 @@ function Hero() {
         <aside className="front-briefs" aria-label="Career highlights">
           <h2>At a glance</h2>
           <article>
-            <strong>200,000</strong>
-            <p>Daily users served by a production application.</p>
+            <strong>12</strong>
+            <p>Services connected through the delivery pipeline.</p>
           </article>
           <article>
             <strong>35%</strong>
@@ -250,7 +250,7 @@ function CaseGraphic({ index }) {
       <div className="case-graphic case-graphic--ledger" aria-hidden="true">
         <div className="ledger-header"><span>System overview</span><strong>Live</strong></div>
         <div className="ledger-stats">
-          <div><small>Daily users</small><strong>200K</strong></div>
+          <div><small>UI stack</small><strong>React</strong></div>
           <div><small>API gain</small><strong>+35%</strong></div>
           <div><small>Services</small><strong>12</strong></div>
         </div>

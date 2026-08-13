@@ -7,7 +7,7 @@ export const experience = [
     summary:
       "Owning a complex, data-heavy offender management interface from component architecture through production delivery.",
     outcomes: [
-      "Own end-to-end delivery of a React and TypeScript UI serving 200,000 daily users, including state management and REST contracts.",
+      "Own end-to-end delivery of a complex React and TypeScript offender management UI, including state management and REST contracts.",
       "Led the AngularJS-to-Angular 17 migration and refactored Spring Boot services to JSON REST, improving response speed by 35%.",
       "Built GitLab CI/CD across 12 services, automated four weekly releases, and reduced mean time to recovery by 40%.",
       "Profile rendering, memory, and bundle-size bottlenecks to keep the application responsive under sustained load.",
@@ -79,7 +79,7 @@ export const projects = [
     description:
       "A data-heavy React and TypeScript interface with intentional component architecture, state management, and API contracts—built to remain responsive under sustained use.",
     stack: ["React", "TypeScript", "REST", "Spring Boot", "OpenShift"],
-    metric: "200K daily users",
+    metric: "Complex operational workflows",
     theme: "lime",
   },
   {
