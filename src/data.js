@@ -1,17 +1,18 @@
 export const experience = [
   {
-    role: "Senior Software Engineer",
+    role: "Software Engineer",
     company: "Pennsylvania Department of Corrections",
-    period: "Aug 2024 — Present",
-    location: "Commonwealth of Pennsylvania",
+    period: "Aug 2023 — Present",
+    location: "Mechanicsburg, Pennsylvania",
     summary:
-      "Modernizing a mission-critical financial platform and improving the way software moves from an idea to production.",
+      "Owning a complex, data-heavy offender management interface from component architecture through production delivery.",
     outcomes: [
-      "Leading a legacy migration from AngularJS to Angular 17 while refactoring Java and Spring Boot services.",
-      "Improved system modularity and performance by 30% through a more maintainable application architecture.",
-      "Streamlining GitLab CI/CD, peer reviews, JIRA delivery, and production monitoring on Red Hat OpenShift.",
+      "Own end-to-end delivery of a React and TypeScript UI serving 200,000 daily users, including state management and REST contracts.",
+      "Led the AngularJS-to-Angular 17 migration and refactored Spring Boot services to JSON REST, improving response speed by 35%.",
+      "Built GitLab CI/CD across 12 services, automated four weekly releases, and reduced mean time to recovery by 40%.",
+      "Profile rendering, memory, and bundle-size bottlenecks to keep the application responsive under sustained load.",
     ],
-    stack: ["Angular 17", "Java", "Spring Boot", "OpenShift", "GitLab CI/CD"],
+    stack: ["React", "TypeScript", "Angular 17", "REST APIs", "OpenShift"],
   },
   {
     role: "Software Engineer",
@@ -30,15 +31,17 @@ export const experience = [
   {
     role: "Application Development Analyst",
     company: "Accenture",
-    period: "Aug 2021 — Dec 2021",
+    period: "Jul 2021 — Dec 2021",
     location: "Client: JPMorgan Chase",
     summary:
-      "Delivered and tested enterprise software aligned with a global financial client’s business requirements.",
+      "Built high-volume financial interfaces and the delivery systems behind them for JPMorgan’s Photon platform.",
     outcomes: [
-      "Partnered with stakeholders to translate business requirements into production-ready applications.",
-      "Built full-stack solutions with Java 8, Spring Boot, and React.",
+      "Built interactive WebGL visualizations inside React dashboards, giving risk teams real-time analytical views over large datasets.",
+      "Rebuilt scalable React and Next.js frontends and versioned REST services, enabling 25% higher transaction throughput.",
+      "Packaged Docker and Helm deployments for Kubernetes and sustained 99.9% uptime through Jenkins pipelines.",
+      "Accelerated release cycles by 30% with Git and AWS CodeBuild, while mentoring junior engineers on CI/CD practices.",
     ],
-    stack: ["Java 8", "Spring Boot", "React", "Docker", "MSSQL"],
+    stack: ["React", "Next.js", "WebGL", "REST APIs", "AWS"],
   },
   {
     role: "Junior Software Engineer",
@@ -46,12 +49,13 @@ export const experience = [
     period: "Nov 2018 — Jul 2021",
     location: "Enterprise SaaS",
     summary:
-      "Developed connected customer-experience products for manufacturers across the US and Japan.",
+      "Developed performant enterprise portals and APIs for connected customer-experience products.",
     outcomes: [
-      "Integrated warranty, registration, products, and plans modules for Takeuchi, Bluestar, and Kohler.",
-      "Improved code quality by 30% through optimization, security fixes, and clean-code practices.",
+      "Designed Spring Boot REST APIs for a React and TypeScript frontend, lifting efficiency by 30% through query caching.",
+      "Cut PostgreSQL latency by 20% and moved static assets to AWS S3 to improve page-load performance.",
+      "Introduced Tailwind CSS to strengthen visual consistency across the interface.",
     ],
-    stack: ["Java", "Spring Boot", "React", "AWS", "Jenkins"],
+    stack: ["React", "TypeScript", "Spring Boot", "PostgreSQL", "AWS S3"],
   },
   {
     role: "Front-end Engineering Intern",
@@ -70,22 +74,22 @@ export const experience = [
 export const projects = [
   {
     number: "01",
-    title: "Expense Management Platform",
-    label: "Workflow automation",
+    title: "Enterprise Management Interface",
+    label: "High-scale government platform",
     description:
-      "A full-stack platform that makes organizational expense tracking, submission, review, and approval easier to manage from one place.",
-    stack: ["React", "Redux", "Laravel", "MySQL", "Firebase"],
-    metric: "One connected approval flow",
+      "A data-heavy React and TypeScript interface with intentional component architecture, state management, and API contracts—built to remain responsive under sustained use.",
+    stack: ["React", "TypeScript", "REST", "Spring Boot", "OpenShift"],
+    metric: "200K daily users",
     theme: "lime",
   },
   {
     number: "02",
-    title: "MERN Commerce Experience",
-    label: "End-to-end product build",
+    title: "Interactive Risk Analytics",
+    label: "Browser-based visualization",
     description:
-      "An e-commerce experience engineered from the ground up, spanning catalog UX, application state, data, authentication services, and payments.",
-    stack: ["MongoDB", "Express", "React", "Node.js", "Stripe"],
-    metric: "Built across the full stack",
+      "WebGL visualizations embedded in React dashboards to give financial risk teams smooth, real-time analytical views across large datasets.",
+    stack: ["WebGL", "React", "Next.js", "TypeScript", "REST"],
+    metric: "Real-time analytical views",
     theme: "violet",
   },
 ];
@@ -93,19 +97,19 @@ export const projects = [
 export const capabilities = [
   {
     title: "Front end",
-    items: ["Angular", "React", "Redux", "JavaScript", "TypeScript", "HTML", "CSS"],
+    items: ["React", "Next.js", "TypeScript", "Angular 17", "WebGL", "HTML5 Canvas", "WebSockets", "Tailwind CSS"],
   },
   {
     title: "Back end",
-    items: ["Java", "Spring Boot", "Python", "Node.js", "Express", "Laravel", "REST APIs"],
+    items: ["Java", "Spring Boot", "REST APIs", "Microservices", "API design", "Python"],
   },
   {
     title: "Data",
-    items: ["MySQL", "PostgreSQL", "MSSQL", "MongoDB"],
+    items: ["PostgreSQL", "MySQL", "MSSQL", "Redis", "Query optimization", "Caching"],
   },
   {
     title: "Delivery",
-    items: ["AWS", "OpenShift", "Docker", "GitLab CI/CD", "Jenkins", "Git"],
+    items: ["AWS", "S3", "OpenShift", "Docker", "Kubernetes", "Helm", "GitLab CI/CD", "Jenkins"],
   },
 ];
 
@@ -166,9 +170,9 @@ export const certifications = [
 ];
 
 export const socialLinks = {
-  linkedin: "https://www.linkedin.com/in/adimulamvenugopal/",
+  linkedin: "https://www.linkedin.com/in/venuga/",
   github: "https://github.com/VenuAdhimulam",
   hackerrank: "https://www.hackerrank.com/profile/VenuAdimulam",
   leetcode: "https://leetcode.com/VenuAdimulam/",
-  email: "mailto:venuadimulam01@gmail.com",
+  email: "mailto:venu96gopal11@gmail.com",
 };

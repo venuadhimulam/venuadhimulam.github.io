@@ -75,13 +75,13 @@ function Header() {
   const links = ["About", "Experience", "Work", "Skills"];
 
   return (
-    <header className={`site-header ${scrolled ? "site-header--scrolled" : ""}`}>
+    <header className={`site-header ${scrolled ? "site-header--scrolled" : ""} ${open ? "site-header--menu-open" : ""}`}>
       <a className="brand" href="#top" aria-label="Venu Adimulam, back to top">
         <span className="brand-mark">VA</span>
         <span className="brand-name">Venu Adimulam</span>
       </a>
 
-      <nav className={`main-nav ${open ? "main-nav--open" : ""}`} aria-label="Main navigation">
+      <nav id="main-navigation" className={`main-nav ${open ? "main-nav--open" : ""}`} aria-label="Main navigation">
         {links.map((link, index) => (
           <a href={`#${link.toLowerCase()}`} key={link} onClick={() => setOpen(false)}>
             <span>0{index + 1}</span>
@@ -97,6 +97,7 @@ function Header() {
         className={`menu-button ${open ? "menu-button--open" : ""}`}
         type="button"
         aria-expanded={open}
+        aria-controls="main-navigation"
         aria-label={open ? "Close navigation" : "Open navigation"}
         onClick={() => setOpen((value) => !value)}
       >
@@ -116,14 +117,14 @@ function Hero() {
 
       <div className="hero-content page-shell">
         <div className="hero-copy reveal">
-          <p className="eyebrow"><span /> Software engineer · Full stack</p>
+          <p className="eyebrow"><span /> Senior software engineer · Frontend</p>
           <h1>
             Building modern software for
             <em> real-world complexity.</em>
           </h1>
           <p className="hero-intro">
-            I’m Venu Adimulam. I modernize enterprise platforms and turn complex
-            workflows into dependable, human-centered products.
+            I’m Venu Adimulam. I build complex, data-heavy web applications and
+            turn demanding workflows into fast, dependable product experiences.
           </p>
           <div className="hero-actions">
             <a className="button button--accent" href="#work">
@@ -149,7 +150,7 @@ function Hero() {
               <div>
                 <span className="status-dot" />
                 <p>Currently</p>
-                <strong>Senior Software Engineer</strong>
+                <strong>Frontend-focused Engineer</strong>
               </div>
               <span className="profile-number">VA/26</span>
             </div>
@@ -167,10 +168,6 @@ function Hero() {
       </div>
 
       <div className="hero-footer page-shell">
-        <a href="#about" className="scroll-cue">
-          <span>Scroll to discover</span>
-          <i><Arrow /></i>
-        </a>
         <div className="hero-meta">
           <span>Java / Spring Boot</span>
           <span>Angular / React</span>
@@ -213,12 +210,12 @@ function About() {
             <p>
               With a master’s in computer science and experience spanning public-sector
               systems, healthcare research, financial services, and enterprise SaaS, I
-              bring both technical range and delivery focus to every build.
+              bring deep frontend ownership and full-stack context to every build.
             </p>
             <p>
-              My strongest work happens where architecture, user needs, and real business
-              constraints meet—from untangling legacy systems to creating a clean path to
-              production.
+              My strongest work happens where architecture, performance, and real user
+              needs meet—from profiling rendering bottlenecks and building WebGL views to
+              creating a clean, reliable path to production.
             </p>
             <a className="text-link text-link--dark" href={socialLinks.linkedin} target="_blank" rel="noreferrer">
               More on LinkedIn <Arrow diagonal />
@@ -228,20 +225,20 @@ function About() {
 
         <div className="impact-row reveal">
           <article>
-            <strong>07+</strong>
-            <p>Years building software</p>
+            <strong>200K</strong>
+            <p>Daily users on a production interface</p>
           </article>
           <article>
-            <strong>30%</strong>
-            <p>Performance & modularity gain</p>
+            <strong>35%</strong>
+            <p>Faster API response speed</p>
           </article>
           <article>
-            <strong>05</strong>
-            <p>Engineering roles across industries</p>
+            <strong>40%</strong>
+            <p>Reduction in recovery time</p>
           </article>
           <article>
-            <strong>02</strong>
-            <p>Computer science degrees</p>
+            <strong>06+</strong>
+            <p>Years delivering complex applications</p>
           </article>
         </div>
       </div>
@@ -294,38 +291,56 @@ function ProjectVisual({ project }) {
     return (
       <div className="project-visual project-visual--lime" aria-hidden="true">
         <div className="mock-window">
-          <div className="mock-topbar"><i /><i /><i /><span>expense / overview</span></div>
+          <div className="mock-topbar"><i /><i /><i /><span>case management / overview</span></div>
           <div className="mock-body">
             <div className="mock-sidebar"><b>VA</b><span /><span /><span /><span /></div>
             <div className="mock-dashboard">
               <div className="mock-dashboard-head"><span /><i /></div>
-              <div className="mock-stat-row"><span><i />$18.4k</span><span><i />92%</span><span><i />24</span></div>
+              <div className="mock-stat-row"><span><i />200k</span><span><i />35%</span><span><i />12</span></div>
               <div className="mock-chart"><i /><i /><i /><i /><i /><i /><i /></div>
               <div className="mock-table"><span /><span /><span /><span /></div>
             </div>
           </div>
         </div>
-        <div className="visual-chip">APPROVED <strong>✓</strong></div>
+        <div className="visual-chip">PRODUCTION <strong>●</strong></div>
       </div>
     );
   }
 
   return (
     <div className="project-visual project-visual--violet" aria-hidden="true">
-      <div className="phone phone--back">
-        <div className="phone-bar" />
-        <div className="product-photo product-photo--two"><span>02</span></div>
-        <i /><i /><i />
+      <div className="risk-window">
+        <div className="risk-topbar">
+          <div><i /><i /><i /></div>
+          <span>PHOTON / RISK ENGINE</span>
+          <b>LIVE</b>
+        </div>
+        <div className="risk-layout">
+          <div className="risk-sidebar"><strong>PX</strong><i /><i /><i /><i /></div>
+          <div className="risk-content">
+            <div className="risk-heading">
+              <span>MARKET RISK / OVERVIEW</span>
+              <strong>Portfolio exposure</strong>
+            </div>
+            <div className="risk-stats">
+              <span><i />THROUGHPUT<strong>+25%</strong></span>
+              <span><i />UPTIME<strong>99.9%</strong></span>
+              <span><i />RELEASES<strong>+30%</strong></span>
+            </div>
+            <div className="risk-canvas">
+              <div className="risk-grid" />
+              <svg viewBox="0 0 500 180" preserveAspectRatio="none">
+                <path d="M0 140 C60 128 70 74 125 91 S198 150 245 104 S314 32 361 62 S425 125 500 28" />
+                <path d="M0 157 C70 153 100 130 152 137 S233 160 292 132 S390 89 500 106" />
+              </svg>
+              <span className="risk-point risk-point--one" />
+              <span className="risk-point risk-point--two" />
+              <span className="risk-point risk-point--three" />
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="phone phone--front">
-        <div className="phone-bar" />
-        <div className="shop-nav"><b>CURATE</b><i /></div>
-        <div className="product-photo"><span>01</span></div>
-        <p>Essential form</p>
-        <strong>$148</strong>
-        <button>ADD TO BAG</button>
-      </div>
-      <div className="payment-pill">stripe <span>PAYMENT READY</span></div>
+      <div className="data-pill">WebGL <span>GPU RENDERED</span></div>
     </div>
   );
 }
@@ -337,8 +352,8 @@ function Work() {
         <SectionHeading
           index="03"
           eyebrow="Selected work"
-          title="Products built around the job to be done."
-          description="A pair of full-stack projects that turn multi-step workflows into focused product experiences."
+          title="Interfaces built for demanding work."
+          description="Two production case studies in high-scale application architecture, browser performance, and data-intensive visualization."
         />
 
         <div className="project-list">
@@ -443,7 +458,7 @@ function Contact() {
         <p className="eyebrow"><span /> Have a project or role in mind?</p>
         <h2>Let’s build something <em>that matters.</em></h2>
         <a className="contact-email" href={socialLinks.email}>
-          venuadimulam01@gmail.com <Arrow diagonal />
+          venu96gopal11@gmail.com <Arrow diagonal />
         </a>
 
         <div className="footer-row">
