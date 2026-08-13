@@ -10,237 +10,199 @@ import {
   socialLinks,
 } from "./data";
 
-function Arrow({ diagonal = false }) {
-  return (
-    <svg
-      className="icon"
-      viewBox="0 0 24 24"
-      fill="none"
-      aria-hidden="true"
-    >
-      {diagonal ? (
-        <>
-          <path d="M7 17 17 7" />
-          <path d="M8 7h9v9" />
-        </>
-      ) : (
-        <>
-          <path d="M5 12h14" />
-          <path d="m14 7 5 5-5 5" />
-        </>
-      )}
-    </svg>
-  );
-}
+const navItems = [
+  ["Profile", "about"],
+  ["Experience", "experience"],
+  ["Case Studies", "work"],
+  ["Technical Index", "skills"],
+  ["Education", "education"],
+];
 
-function CodeMark() {
-  return (
-    <svg className="code-mark" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-      <path d="m14.5 10-7 8 7 8M21.5 10l7 8-7 8" />
-    </svg>
-  );
-}
-
-function SectionHeading({ index, eyebrow, title, description, light = false }) {
-  return (
-    <div className={`section-heading ${light ? "section-heading--light" : ""}`}>
-      <div className="section-kicker">
-        <span>{index}</span>
-        <span>{eyebrow}</span>
-      </div>
-      <div className="section-title-wrap">
-        <h2>{title}</h2>
-        {description && <p>{description}</p>}
-      </div>
-    </div>
-  );
+function Arrow() {
+  return <span className="arrow" aria-hidden="true">↗</span>;
 }
 
 function Header() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    document.body.classList.toggle("menu-open", open);
-    return () => document.body.classList.remove("menu-open");
+    const closeOnEscape = (event) => event.key === "Escape" && setOpen(false);
+    document.addEventListener("keydown", closeOnEscape);
+    document.body.classList.toggle("nav-open", open);
+    return () => {
+      document.removeEventListener("keydown", closeOnEscape);
+      document.body.classList.remove("nav-open");
+    };
   }, [open]);
 
-  const links = ["About", "Experience", "Work", "Skills"];
+  const date = new Intl.DateTimeFormat("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  }).format(new Date());
 
   return (
-    <header className={`site-header ${scrolled ? "site-header--scrolled" : ""} ${open ? "site-header--menu-open" : ""}`}>
-      <a className="brand" href="#top" aria-label="Venu Adimulam, back to top">
-        <span className="brand-mark">VA</span>
-        <span className="brand-name">Venu Adimulam</span>
-      </a>
+    <header className="newsroom-header" id="top">
+      <div className="edition-bar page-width">
+        <span>Portfolio Edition</span>
+        <span>Arlington, Virginia</span>
+        <time>{date}</time>
+      </div>
 
-      <nav id="main-navigation" className={`main-nav ${open ? "main-nav--open" : ""}`} aria-label="Main navigation">
-        {links.map((link, index) => (
-          <a href={`#${link.toLowerCase()}`} key={link} onClick={() => setOpen(false)}>
-            <span>0{index + 1}</span>
-            {link}
-          </a>
-        ))}
-        <a className="nav-contact" href="#contact" onClick={() => setOpen(false)}>
-          Let’s talk <Arrow diagonal />
+      <div className="masthead-row page-width">
+        <a href="#top" className="masthead" aria-label="Venu Adimulam, home">
+          <span>The portfolio of</span>
+          <strong>Venu Adimulam</strong>
         </a>
-      </nav>
+        <p>Engineering<br />Systems &amp; Product</p>
+        <button
+          className={`menu-toggle ${open ? "menu-toggle--open" : ""}`}
+          type="button"
+          aria-label={open ? "Close navigation" : "Open navigation"}
+          aria-expanded={open}
+          aria-controls="site-navigation"
+          onClick={() => setOpen((value) => !value)}
+        >
+          <span />
+          <span />
+        </button>
+      </div>
 
-      <button
-        className={`menu-button ${open ? "menu-button--open" : ""}`}
-        type="button"
-        aria-expanded={open}
-        aria-controls="main-navigation"
-        aria-label={open ? "Close navigation" : "Open navigation"}
-        onClick={() => setOpen((value) => !value)}
+      <nav
+        className={`newspaper-nav ${open ? "newspaper-nav--open" : ""}`}
+        id="site-navigation"
+        aria-label="Primary navigation"
       >
-        <span />
-        <span />
-      </button>
+        <div className="page-width newspaper-nav__inner">
+          {navItems.map(([label, target], index) => (
+            <a href={`#${target}`} onClick={() => setOpen(false)} key={target}>
+              <small>0{index + 1}</small>{label}
+            </a>
+          ))}
+          <a className="resume-link" href={resume} target="_blank" rel="noreferrer">
+            Read Résumé <Arrow />
+          </a>
+        </div>
+      </nav>
     </header>
   );
 }
 
 function Hero() {
   return (
-    <section className="hero" id="top">
-      <div className="hero-grid" aria-hidden="true" />
-      <div className="hero-orb hero-orb--one" aria-hidden="true" />
-      <div className="hero-orb hero-orb--two" aria-hidden="true" />
-
-      <div className="hero-content page-shell">
-        <div className="hero-copy reveal">
-          <p className="eyebrow"><span /> Senior software engineer · Frontend</p>
-          <h1>
-            Building modern software for
-            <em> real-world complexity.</em>
-          </h1>
-          <p className="hero-intro">
-            I’m Venu Adimulam. I build complex, data-heavy web applications and
-            turn demanding workflows into fast, dependable product experiences.
+    <>
+      <section className="front-page page-width" aria-labelledby="lead-headline">
+        <article className="lead-story">
+          <div className="story-label"><span>Lead Story</span><span>Senior Frontend Engineer</span></div>
+          <h1 id="lead-headline">Engineering interfaces for systems that cannot afford to slow down.</h1>
+          <p className="deck">
+            Venu Adimulam builds complex, data-heavy web applications where browser
+            performance, clear architecture, and dependable delivery matter.
           </p>
-          <div className="hero-actions">
-            <a className="button button--accent" href="#work">
-              Explore my work <Arrow />
-            </a>
-            <a className="text-link" href={resume} target="_blank" rel="noreferrer">
-              View résumé <Arrow diagonal />
-            </a>
+          <div className="byline">
+            <span>By Venu Adimulam</span>
+            <span>6+ years in software engineering</span>
           </div>
-        </div>
+          <div className="lead-actions">
+            <a href="#work">Read the case studies <Arrow /></a>
+            <a href={resume} target="_blank" rel="noreferrer">Open résumé <Arrow /></a>
+          </div>
+        </article>
 
-        <div className="profile-stage reveal reveal--delay">
-          <div className="profile-code" aria-hidden="true">
-            <span>01</span>
-            <span>BUILD</span>
-            <span>SHIP</span>
-          </div>
-          <div className="profile-card">
-            <div className="profile-image-wrap">
-              <img src={headshot} alt="Venu Adimulam" />
-            </div>
-            <div className="profile-caption">
-              <div>
-                <span className="status-dot" />
-                <p>Currently</p>
-                <strong>Frontend-focused Engineer</strong>
-              </div>
-              <span className="profile-number">VA/26</span>
-            </div>
-          </div>
-          <div className="floating-note floating-note--top">
-            <CodeMark />
-            <span>Since</span>
-            <strong>2018</strong>
-          </div>
-          <div className="floating-note floating-note--bottom">
-            <span>Focused on</span>
-            <strong>Clarity + scale</strong>
-          </div>
+        <figure className="front-portrait">
+          <div className="portrait-frame"><img src={headshot} alt="Venu Adimulam" /></div>
+          <figcaption>
+            <span>Venu Adimulam, software engineer</span>
+            <span>Photograph: Niagara Falls, N.Y.</span>
+          </figcaption>
+        </figure>
+
+        <aside className="front-briefs" aria-label="Career highlights">
+          <h2>At a glance</h2>
+          <article>
+            <strong>200,000</strong>
+            <p>Daily users served by a production application.</p>
+          </article>
+          <article>
+            <strong>35%</strong>
+            <p>Improvement in API response speed after modernization.</p>
+          </article>
+          <article>
+            <strong>40%</strong>
+            <p>Reduction in mean time to recovery through CI/CD.</p>
+          </article>
+        </aside>
+      </section>
+
+      <div className="news-flash">
+        <div className="page-width">
+          <strong>In this edition</strong>
+          <span>React &amp; TypeScript at public-sector scale</span>
+          <span>WebGL for financial risk analysis</span>
+          <span>From commit to OpenShift</span>
         </div>
       </div>
-
-      <div className="hero-footer page-shell">
-        <div className="hero-meta">
-          <span>Java / Spring Boot</span>
-          <span>Angular / React</span>
-          <span>Cloud / CI/CD</span>
-        </div>
-      </div>
-    </section>
+    </>
   );
 }
 
-function Marquee() {
-  const line = ["Design with intent", "Engineer for scale", "Ship with confidence"];
+function SectionHeader({ desk, number, title, description }) {
   return (
-    <div className="marquee" aria-label="Design with intent. Engineer for scale. Ship with confidence.">
-      <div className="marquee-track">
-        {[...line, ...line].map((item, index) => (
-          <span key={`${item}-${index}`}>
-            {item} <i>✳</i>
-          </span>
-        ))}
-      </div>
-    </div>
+    <header className="section-header">
+      <div className="section-header__meta"><span>{number}</span><span>{desk}</span></div>
+      <h2>{title}</h2>
+      {description && <p>{description}</p>}
+    </header>
   );
 }
 
 function About() {
   return (
-    <section className="section about" id="about">
-      <div className="page-shell">
-        <SectionHeading index="01" eyebrow="About" title="A product mindset, backed by engineering depth." />
+    <section className="paper-section page-width" id="about">
+      <SectionHeader
+        number="01"
+        desk="Profile"
+        title="A product mindset with engineering depth."
+        description="Full-stack context. Frontend focus. Ownership from the first ambiguous requirement through production."
+      />
 
-        <div className="about-grid reveal">
-          <div className="about-lead">
-            <p>
-              I work across the stack to make complicated products feel
-              <span> straightforward.</span>
-            </p>
-          </div>
-          <div className="about-copy">
-            <p>
-              With a master’s in computer science and experience spanning public-sector
-              systems, healthcare research, financial services, and enterprise SaaS, I
-              bring deep frontend ownership and full-stack context to every build.
-            </p>
-            <p>
-              My strongest work happens where architecture, performance, and real user
-              needs meet—from profiling rendering bottlenecks and building WebGL views to
-              creating a clean, reliable path to production.
-            </p>
-            <a className="text-link text-link--dark" href={socialLinks.linkedin} target="_blank" rel="noreferrer">
-              More on LinkedIn <Arrow diagonal />
-            </a>
-          </div>
-        </div>
+      <div className="profile-layout">
+        <article className="profile-copy">
+          <p>
+            Venu works across the stack to make complicated products feel straightforward.
+            His experience spans public-sector systems, healthcare research, financial
+            services, and enterprise SaaS—domains where reliability is not optional.
+          </p>
+          <p>
+            The strongest work happens where architecture, browser performance, and user
+            needs meet. That has meant leading framework migrations, profiling memory and
+            rendering bottlenecks, defining REST contracts, and building repeatable paths
+            to production.
+          </p>
+          <p>
+            He holds a master’s degree in computer science and brings enough backend and
+            delivery experience to make better frontend decisions: choices grounded in the
+            whole system, not just the component tree.
+          </p>
+        </article>
 
-        <div className="impact-row reveal">
-          <article>
-            <strong>200K</strong>
-            <p>Daily users on a production interface</p>
-          </article>
-          <article>
-            <strong>35%</strong>
-            <p>Faster API response speed</p>
-          </article>
-          <article>
-            <strong>40%</strong>
-            <p>Reduction in recovery time</p>
-          </article>
-          <article>
-            <strong>06+</strong>
-            <p>Years delivering complex applications</p>
-          </article>
-        </div>
+        <blockquote>
+          “The interface is where system complexity meets a real person. My job is to make
+          that meeting feel clear, fast, and dependable.”
+          <cite>— Venu Adimulam</cite>
+        </blockquote>
+
+        <aside className="editorial-note">
+          <h3>What he brings</h3>
+          <ul>
+            <li>End-to-end feature ownership</li>
+            <li>Performance-first frontend architecture</li>
+            <li>Clear API and component contracts</li>
+            <li>Code review and engineering mentorship</li>
+            <li>Production and delivery awareness</li>
+          </ul>
+          <a href={socialLinks.linkedin} target="_blank" rel="noreferrer">Full profile on LinkedIn <Arrow /></a>
+        </aside>
       </div>
     </section>
   );
@@ -248,36 +210,32 @@ function About() {
 
 function Experience() {
   return (
-    <section className="section experience" id="experience">
-      <div className="page-shell">
-        <SectionHeading
-          index="02"
-          eyebrow="Experience"
-          title="From first commit to production impact."
-          description="A career shaped by complex domains, practical delivery, and systems that need to keep working."
-          light
+    <section className="paper-section career-desk" id="experience">
+      <div className="page-width">
+        <SectionHeader
+          number="02"
+          desk="Career Desk"
+          title="A record of shipping consequential software."
+          description="Five roles across government, healthcare, finance, enterprise SaaS, and client services."
         />
 
-        <div className="experience-list">
+        <div className="career-list">
           {experience.map((item, index) => (
-            <article className="experience-item reveal" key={`${item.company}-${item.period}`}>
-              <div className="experience-index">0{index + 1}</div>
-              <div className="experience-main">
-                <p className="experience-period">{item.period}</p>
+            <article className={`career-story ${index === 0 ? "career-story--lead" : ""}`} key={`${item.company}-${item.period}`}>
+              <div className="career-date">
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <time>{item.period}</time>
+                <small>{item.location}</small>
+              </div>
+              <div className="career-headline">
+                <p>{item.company}</p>
                 <h3>{item.role}</h3>
-                <p className="experience-company">{item.company}</p>
-                <p className="experience-summary">{item.summary}</p>
-                <div className="tag-row">
-                  {item.stack.map((tech) => <span key={tech}>{tech}</span>)}
-                </div>
+                <p className="career-summary">{item.summary}</p>
+                <div className="technology-line">{item.stack.join(" · ")}</div>
               </div>
-              <div className="experience-outcomes">
-                <span className="outcomes-label">Selected impact</span>
-                <ul>
-                  {item.outcomes.map((outcome) => <li key={outcome}>{outcome}</li>)}
-                </ul>
-                <p className="experience-location">{item.location}</p>
-              </div>
+              <ul className="career-report">
+                {item.outcomes.map((outcome) => <li key={outcome}>{outcome}</li>)}
+              </ul>
             </article>
           ))}
         </div>
@@ -286,92 +244,67 @@ function Experience() {
   );
 }
 
-function ProjectVisual({ project }) {
-  if (project.theme === "lime") {
+function CaseGraphic({ index }) {
+  if (index === 0) {
     return (
-      <div className="project-visual project-visual--lime" aria-hidden="true">
-        <div className="mock-window">
-          <div className="mock-topbar"><i /><i /><i /><span>case management / overview</span></div>
-          <div className="mock-body">
-            <div className="mock-sidebar"><b>VA</b><span /><span /><span /><span /></div>
-            <div className="mock-dashboard">
-              <div className="mock-dashboard-head"><span /><i /></div>
-              <div className="mock-stat-row"><span><i />200k</span><span><i />35%</span><span><i />12</span></div>
-              <div className="mock-chart"><i /><i /><i /><i /><i /><i /><i /></div>
-              <div className="mock-table"><span /><span /><span /><span /></div>
-            </div>
-          </div>
+      <div className="case-graphic case-graphic--ledger" aria-hidden="true">
+        <div className="ledger-header"><span>System overview</span><strong>Live</strong></div>
+        <div className="ledger-stats">
+          <div><small>Daily users</small><strong>200K</strong></div>
+          <div><small>API gain</small><strong>+35%</strong></div>
+          <div><small>Services</small><strong>12</strong></div>
         </div>
-        <div className="visual-chip">PRODUCTION <strong>●</strong></div>
+        <div className="ledger-table">
+          <div><span>Application shell</span><i style={{ width: "94%" }} /><b>Stable</b></div>
+          <div><span>REST contracts</span><i style={{ width: "83%" }} /><b>JSON</b></div>
+          <div><span>Release pipeline</span><i style={{ width: "76%" }} /><b>4 / wk</b></div>
+          <div><span>Browser performance</span><i style={{ width: "88%" }} /><b>Profiled</b></div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="project-visual project-visual--violet" aria-hidden="true">
-      <div className="risk-window">
-        <div className="risk-topbar">
-          <div><i /><i /><i /></div>
-          <span>PHOTON / RISK ENGINE</span>
-          <b>LIVE</b>
-        </div>
-        <div className="risk-layout">
-          <div className="risk-sidebar"><strong>PX</strong><i /><i /><i /><i /></div>
-          <div className="risk-content">
-            <div className="risk-heading">
-              <span>MARKET RISK / OVERVIEW</span>
-              <strong>Portfolio exposure</strong>
-            </div>
-            <div className="risk-stats">
-              <span><i />THROUGHPUT<strong>+25%</strong></span>
-              <span><i />UPTIME<strong>99.9%</strong></span>
-              <span><i />RELEASES<strong>+30%</strong></span>
-            </div>
-            <div className="risk-canvas">
-              <div className="risk-grid" />
-              <svg viewBox="0 0 500 180" preserveAspectRatio="none">
-                <path d="M0 140 C60 128 70 74 125 91 S198 150 245 104 S314 32 361 62 S425 125 500 28" />
-                <path d="M0 157 C70 153 100 130 152 137 S233 160 292 132 S390 89 500 106" />
-              </svg>
-              <span className="risk-point risk-point--one" />
-              <span className="risk-point risk-point--two" />
-              <span className="risk-point risk-point--three" />
-            </div>
-          </div>
-        </div>
+    <div className="case-graphic case-graphic--chart" aria-hidden="true">
+      <div className="chart-header"><span>Photon risk engine</span><span>Live analytical view</span></div>
+      <div className="chart-plot">
+        <div className="chart-grid" />
+        <svg viewBox="0 0 600 260" preserveAspectRatio="none">
+          <path className="line-primary" d="M0 208 C58 200 75 118 140 135 S235 225 298 158 S386 50 445 91 S527 189 600 42" />
+          <path className="line-secondary" d="M0 230 C75 223 124 186 183 201 S287 238 353 195 S482 127 600 150" />
+        </svg>
+        <span className="chart-point point-a" />
+        <span className="chart-point point-b" />
+        <span className="chart-point point-c" />
       </div>
-      <div className="data-pill">WebGL <span>GPU RENDERED</span></div>
+      <div className="chart-caption"><span>Transaction throughput <b>+25%</b></span><span>Platform uptime <b>99.9%</b></span></div>
     </div>
   );
 }
 
 function Work() {
   return (
-    <section className="section work" id="work">
-      <div className="page-shell">
-        <SectionHeading
-          index="03"
-          eyebrow="Selected work"
-          title="Interfaces built for demanding work."
-          description="Two production case studies in high-scale application architecture, browser performance, and data-intensive visualization."
-        />
+    <section className="paper-section page-width" id="work">
+      <SectionHeader
+        number="03"
+        desk="Case Studies"
+        title="Interfaces built for demanding work."
+        description="Two production stories in high-scale application architecture, browser performance, and data-intensive visualization."
+      />
 
-        <div className="project-list">
-          {projects.map((project) => (
-            <article className="project-card reveal" key={project.number}>
-              <ProjectVisual project={project} />
-              <div className="project-info">
-                <div className="project-label"><span>{project.number}</span>{project.label}</div>
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
-                <div className="project-metric"><i />{project.metric}</div>
-                <div className="tag-row tag-row--dark">
-                  {project.stack.map((tech) => <span key={tech}>{tech}</span>)}
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
+      <div className="case-list">
+        {projects.map((project, index) => (
+          <article className="case-story" key={project.number}>
+            <div className="case-copy">
+              <div className="case-kicker"><span>{project.number}</span><span>{project.label}</span></div>
+              <h3>{project.title}</h3>
+              <p>{project.description}</p>
+              <strong className="case-result">Result: {project.metric}</strong>
+              <div className="case-stack">{project.stack.join(" / ")}</div>
+            </div>
+            <CaseGraphic index={index} />
+          </article>
+        ))}
       </div>
     </section>
   );
@@ -379,27 +312,24 @@ function Work() {
 
 function Skills() {
   return (
-    <section className="section skills" id="skills">
-      <div className="page-shell">
-        <SectionHeading
-          index="04"
-          eyebrow="Capabilities"
-          title="The right tool, used for the right reason."
-          description="A practical toolkit for modern interfaces, dependable services, clean data, and repeatable delivery."
-          light
+    <section className="paper-section technical-index" id="skills">
+      <div className="page-width">
+        <SectionHeader
+          number="04"
+          desk="Technical Index"
+          title="The tools behind the reporting."
+          description="A practical toolkit selected for the interface, system, and delivery problem at hand."
         />
 
-        <div className="capability-grid">
+        <div className="index-grid">
           {capabilities.map((group, index) => (
-            <article className="capability-card reveal" key={group.title}>
-              <div className="capability-top">
-                <span>0{index + 1}</span>
-                <CodeMark />
-              </div>
-              <h3>{group.title}</h3>
-              <ul>
-                {group.items.map((item) => <li key={item}>{item}</li>)}
-              </ul>
+            <article key={group.title}>
+              <div className="index-heading"><span>{String(index + 1).padStart(2, "0")}</span><h3>{group.title}</h3></div>
+              <ol>
+                {group.items.map((item, itemIndex) => (
+                  <li key={item}><span>{String(itemIndex + 1).padStart(2, "0")}</span>{item}</li>
+                ))}
+              </ol>
             </article>
           ))}
         </div>
@@ -410,16 +340,20 @@ function Skills() {
 
 function Credentials() {
   return (
-    <section className="section credentials" id="credentials">
-      <div className="page-shell">
-        <SectionHeading index="05" eyebrow="Education" title="Strong foundations. Constant forward motion." />
+    <section className="paper-section page-width" id="education">
+      <SectionHeader
+        number="05"
+        desk="Education & Credentials"
+        title="Strong foundations, continuously updated."
+      />
 
-        <div className="education-grid">
+      <div className="education-layout">
+        <div className="degree-list">
           {education.map((item) => (
-            <article className="education-card reveal" key={item.school}>
-              <div className="school-mark">{item.monogram}</div>
+            <article key={item.school}>
+              <span className="degree-mark">{item.monogram}</span>
               <div>
-                <span>{item.period}</span>
+                <time>{item.period}</time>
                 <h3>{item.degree}</h3>
                 <p>{item.field}</p>
                 <strong>{item.school}</strong>
@@ -428,22 +362,15 @@ function Credentials() {
           ))}
         </div>
 
-        <div className="certification-wrap reveal">
-          <div className="certification-intro">
-            <span className="section-kicker"><span>+</span><span>Continuous learning</span></span>
-            <h3>Credentials that keep the toolkit current.</h3>
-          </div>
-          <div className="certification-list">
-            {certifications.map((certificate) => (
-              <a href={certificate.link} target="_blank" rel="noreferrer" key={certificate.title}>
-                <div>
-                  <span>{certificate.issuer} · {certificate.date}</span>
-                  <strong>{certificate.title}</strong>
-                </div>
-                <i><Arrow diagonal /></i>
-              </a>
-            ))}
-          </div>
+        <div className="credential-list">
+          <h3>Professional development</h3>
+          {certifications.map((certificate, index) => (
+            <a href={certificate.link} target="_blank" rel="noreferrer" key={certificate.title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <div><strong>{certificate.title}</strong><small>{certificate.issuer} · {certificate.date}</small></div>
+              <Arrow />
+            </a>
+          ))}
         </div>
       </div>
     </section>
@@ -452,26 +379,27 @@ function Credentials() {
 
 function Contact() {
   return (
-    <footer className="contact" id="contact">
-      <div className="contact-orbit" aria-hidden="true"><span /><span /><span /></div>
-      <div className="page-shell">
-        <p className="eyebrow"><span /> Have a project or role in mind?</p>
-        <h2>Let’s build something <em>that matters.</em></h2>
-        <a className="contact-email" href={socialLinks.email}>
-          venu96gopal11@gmail.com <Arrow diagonal />
-        </a>
-
-        <div className="footer-row">
-          <a className="brand brand--footer" href="#top">
-            <span className="brand-mark">VA</span>
-            <span className="brand-name">Venu Adimulam</span>
-          </a>
-          <div className="socials">
-            <a href={socialLinks.linkedin} target="_blank" rel="noreferrer">LinkedIn <Arrow diagonal /></a>
-            <a href={socialLinks.github} target="_blank" rel="noreferrer">GitHub <Arrow diagonal /></a>
-            <a href={socialLinks.leetcode} target="_blank" rel="noreferrer">LeetCode <Arrow diagonal /></a>
+    <footer className="classifieds" id="contact">
+      <div className="page-width">
+        <div className="classified-label"><span>Classifieds</span><span>Engineering opportunities</span></div>
+        <div className="classified-main">
+          <h2>Seeking the next consequential frontend challenge.</h2>
+          <div>
+            <p>
+              For senior frontend roles, complex product work, or a conversation about
+              browser performance and scalable systems, write directly.
+            </p>
+            <a className="email-link" href={socialLinks.email}>venu96gopal11@gmail.com <Arrow /></a>
           </div>
-          <p>© {new Date().getFullYear()} Venu Adimulam</p>
+        </div>
+        <div className="newspaper-footer">
+          <strong>Venu Adimulam</strong>
+          <div>
+            <a href={socialLinks.linkedin} target="_blank" rel="noreferrer">LinkedIn <Arrow /></a>
+            <a href={socialLinks.github} target="_blank" rel="noreferrer">GitHub <Arrow /></a>
+            <a href={socialLinks.leetcode} target="_blank" rel="noreferrer">LeetCode <Arrow /></a>
+          </div>
+          <span>© {new Date().getFullYear()} · End of edition</span>
         </div>
       </div>
     </footer>
@@ -479,29 +407,11 @@ function Contact() {
 }
 
 function App() {
-  useEffect(() => {
-    const nodes = document.querySelectorAll(".reveal");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12 },
-    );
-    nodes.forEach((node) => observer.observe(node));
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <>
       <Header />
       <main>
         <Hero />
-        <Marquee />
         <About />
         <Experience />
         <Work />
