@@ -1,26 +1,30 @@
-# Portfolio
+# Venu Adimulam — Portfolio
 
-Welcome to my Full Stack Developer portfolio! 👋 I'm Venu Adimulam, a passionate and detail-oriented developer with expertise in both front-end and back-end technologies. I love turning ideas into robust, scalable, and user-friendly applications.
+A responsive portfolio for software engineer Venu Adimulam, focused on full-stack product work, enterprise modernization, and measurable engineering impact.
 
-URL: https://venuadhimulam.github.io/
+## Local development
 
-## About Me
+```bash
+npm install
+npm run dev
+```
 
-I have a strong foundation in full-stack development, with a focus on creating seamless user experiences. My technical skills include:
+Open [http://localhost:5173](http://localhost:5173).
 
-- **Front-End:** HTML, CSS, JavaScript, React, Bootstrap
-- **Back-End:** Java, Spring, Spring Boot, Python, Node.js, Express.js
-- **Databases:** MongoDB, MySQL, PostgreSQL, MSSQL
-- **Version Control:** Git, GitHub
-- **Deployment:** AWS, Firebase
-- **Other Tools:** RESTful APIs, Docker, CI/CD, Jenkins 
+## Production build
 
-Feel free to explore my projects and reach out if you have any questions or opportunities for me!
+```bash
+npm run build
+npm run preview
+```
 
-## Landing Page Screenshots
+The production output is written to `dist/` and is ready for GitHub Pages.
 
-### Web View
-![Web View](src/images/WebView.png)
+## Stack
 
-### Mobile View
-<img src="src/images/MobileView.png" alt="Mobile View" width="300" />
+- React 19
+- Vite 8
+- Custom responsive CSS
+- Zero runtime UI-framework dependencies
+
+Live site: [venuadhimulam.github.io](https://venuadhimulam.github.io/)
